@@ -243,34 +243,6 @@ Keypad.prototype = {
             callback();
         });
     }
-
-    // scanByCol: function () {
-    //     var m = [];
-    //     var self = this;
-
-    //     this.cols.forEach(function (pin) {
-    //         pin.high();
-    //     });
-
-    //     this.rows.forEach(function (rowpin, ri) {
-    //         rowpin.output(0);
-
-    //         this.cols.forEach(function (colpin, ci) {
-    //             colpin.read(function (error, value) {
-    //                 if (!value) {
-    //                     m.push(self.layout[ri][ci]);
-    //                 }
-    //             });
-    //             //if(!colpin.read()) m.push(this.layout[ri][ci]);
-    //         }, this);
-
-    //         rowpin.high();
-    //     }, this);
-
-    //     return m;
-    // }
-
 }
-
 
 module.exports = Keypad;
