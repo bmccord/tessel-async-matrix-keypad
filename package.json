@@ -10,5 +10,8 @@
   "license": "ISC",
   "hardware": {
     "./README.md": false
+  },
+  "dependencies": {
+    "async": "^2.1.4"
   }
 }
