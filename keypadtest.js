@@ -1,5 +1,5 @@
  var tessel = require('tessel')
-    , Keypad = require('./index2')
+    , Keypad = require('./index')
     , gpio = tessel.port.A.pin; //shortcut for referencing Tessel pins
 
   var keypad = new Keypad({
@@ -11,7 +11,7 @@
   , rows: [gpio[0], gpio[1], gpio[2], gpio[3]]
   , cols: [gpio[4], gpio[5], gpio[6], gpio[7]]
   , scan: 'both' // 'col' or 'both'
-  , poll: 100 // number sets for auto polling (integer)
+  , poll: false // number sets for auto polling (integer)
   });
 
   keypad.on('change', function(key, val){
@@ -25,3 +25,7 @@
   keypad.on('keyup', function(key){
     //console.log("Keyup");
   });
+
+  setInterval(function() {
+    keypad.getPressed(function(err, pressed) {console.log(pressed);});
+  }, 1000);
