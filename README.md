@@ -1,7 +1,8 @@
 
-## Tessel Matrix Keypad
+## Tessel Async Matrix Keypad
 
-This library will allow your Tessel to read any matrix type keypad.
+This library will allow your Tessel to read any matrix type keypad.  This was created specifically for Tessel 2 but may also work
+on Tessel 1.  This was branched from Nathan White's work because the Tessel 2 doesn't have a synchronous pin read.
 
 ### About Matrix Keyboards
 
@@ -16,7 +17,7 @@ The [arduino matrix keypad how-to](http://playground.arduino.cc/Main/KeypadTutor
 ### Install
 
 ```bash
-  npm install tessel-matrix-keypad --save
+  npm install tessel-async-matrix-keypad --save
 ```
 
 ### Usage
@@ -24,7 +25,7 @@ The [arduino matrix keypad how-to](http://playground.arduino.cc/Main/KeypadTutor
 ```js
 
   var tessel = require('tessel')
-    , Keypad = require('tessel-matrix-keypad');
+    , Keypad = require('tessel-async-matrix-keypad');
     , gpio = tessel.port['GPIO'].pin //shortcut for referencing Tessel pins
     , modD = tessel.port['D'].pin;
 
@@ -58,7 +59,7 @@ The [arduino matrix keypad how-to](http://playground.arduino.cc/Main/KeypadTutor
 
 ```js
 
-var Keypad = require('tessel-matrix-keypad');
+var Keypad = require('tessel-async-matrix-keypad');
 
 var keypad = new Keypad(options);
 
@@ -78,29 +79,30 @@ var keypad = new Keypad(options);
 
 ### API methods
 
-#### isPressed(key), isPressed(row, col)
+#### isPressed(key), isPressed(row, col, callback(err, value))
 
 Checks to see if key(s) are pressed. Valid argument is a string separated by spaces.
 
-Returns a boolean.
+Executes callback that is passed in with err and value parameters.  The value parameter will contain a boolean.
 
 ```js
-  keypad.isPressed('1 4 A');
+  keypad.isPressed('1 4 A', callback(err, value));
 ```
 
-In the example above the key `1`, `4` and `A` must be pressed to be true.
+In the example above the key `1`, `4` and `A` must be pressed for value to be true.
 
 Alternative usage:
 
 ```js
-  keypad.isPressed(0,0);
+  keypad.isPressed(0, 0, callback(err, value));
 ```
 
-Check to see if the key at row 0, col 0 is pressed.
+Check to see if the key at row 0, col 0 is pressed.  If the key at row 0, col 0 is pressed, value will be true.
 
-#### getPressed
+#### getPressed(callback(err, value))
 
-returns an array of keys that are currently pressed.
+Executes callback when finished.  The err parameter will contain any errors.  The value parameter will contain an
+array of currently pressed keys.
 
 #### stop
 
