@@ -1,6 +1,6 @@
 {
   "name": "tessel-async-matrix-keypad",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Tessel matrix keyboard interface with async functions.  Built because Tessel 2 no longer has a synchronous pin read fucntion.",
   "main": "index.js",
   "scripts": {
