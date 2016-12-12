@@ -25,9 +25,8 @@ The [arduino matrix keypad how-to](http://playground.arduino.cc/Main/KeypadTutor
 ```js
 
   var tessel = require('tessel')
-    , Keypad = require('tessel-async-matrix-keypad');
-    , gpio = tessel.port['GPIO'].pin //shortcut for referencing Tessel pins
-    , modD = tessel.port['D'].pin;
+    , Keypad = require('tessel-async-matrix-keypad')
+    , keypadPins = tessel.port.A.pin; //shortcut for referencing Tessel pins
 
   var keypad = new Keypad({
     keys: [
@@ -35,8 +34,8 @@ The [arduino matrix keypad how-to](http://playground.arduino.cc/Main/KeypadTutor
       ['4', '5', '6', 'B'],
       ['7', '8', '9', 'C'],
       ['*', '0', '#', 'D']]
-  , rows: [gpio.G1, gpio.G2, gpio.G3, gpio.G4]
-  , cols: [gpio.G5, gpio.G6, modD.G1, modD.G2]
+  , rows: [keypadPins[0], keypadPins[1], keypadPins[2], keypadPins[3]]
+  , cols: [keypadPins[4], keypadPins[5], keypadPins[6], keypadPins[7]]
   , scan: 'row' // 'col' or 'both'
   , poll: false // number sets for auto polling (integer)
   });
